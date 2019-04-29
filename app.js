@@ -10,7 +10,7 @@ app.use(express.urlencoded());
 
 // Initialize datastore client
 const {Datastore} = require('@google-cloud/datastore');
-const datastore = new Datastore({namespace: 'cap'});
+const datastore = new Datastore({namespace: 'com.ikea.datastore'});
 
 //get customer by id
 app.get('/customers/:customerId', async (req, res, next) => {
@@ -38,9 +38,11 @@ app.get('/customers', async (req, res, next) => {
 
     var reqURL=req.method +' ' + req.url;
     console.log('Start: '+reqURL);
+    var pageSize=req.query.pageSize;
+    if(pageSize == undefined){ pageSize = 20 ; }
 
 	try {
-		const query = datastore.createQuery('customers');
+        let query = datastore.createQuery('customers').limit(pageSize);
 	    const [results] = await datastore.runQuery(query);
 
         // set the data store key as id of each entity.
@@ -105,9 +107,16 @@ app.post('/customers/batch', async (req, res, next) => {
 
 	try {
 	    var custs=req.body;
-	    console.log('Batch size =' + custs.length);
+        var batchSize = custs.length;
+	    console.log('Batch size =' + batchSize);
+        if(batchSize > 100 ){
+            res
+            .status(400)
+            .send("Batch size limit is 100 elements only.");
+        }
 	    var successCount=0;
-	    for(var i=0 ; i<custs.length ; i++){
+        var customerIds=[];
+	    for(var i=0 ; i<batchSize ; i++){
 	    	try {
 	            const custKey = datastore.key('customers');
 	            const entity = {
@@ -116,14 +125,17 @@ app.post('/customers/batch', async (req, res, next) => {
 	            };
 	            await datastore.save(entity);
 	            console.log(i + ' Customer '+custKey.id+' created.');
+                customerIds.push({ "id" : custKey.id });
 	            successCount++;
 	        }catch(error){
 	            console.log(error);
 	        }
 	    }
 	    console.log('Records inserted = ' + successCount);
+        var responseJsonObj={'recordsReceived' : batchSize, 'recordsInserted' : successCount, 'customerIds' : customerIds  }
 	    res
 	    .status(200)
+        .json(responseJsonObj)
 	    .end();
 	}catch (error) {
 		next(error);
