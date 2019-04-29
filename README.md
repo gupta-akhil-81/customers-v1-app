@@ -1,7 +1,10 @@
 # Customers v1 microservice for ikea
 This service given an interface to manage customers data in Google Cloud Datastore.
+
 Service is hosted at URL = https://v1-dot-customers-dot-ikea-services-dev.appspot.com
-It is developed in NodeJS10 and is deployed on Google App Engien Standard.
+
+It is developed in NodeJS10 and is deployed on Google App Engine Standard.
+
 
 The service offers following functionalities thru the APIs-
 1. Create a new customer entity
@@ -10,7 +13,7 @@ The service offers following functionalities thru the APIs-
 4. Retrieve multiple customer entities from datastore
 5. Upload 100 new customer entities in one batch
 
-Interfacce details of all these APIs are described below.
+Interface details of all these APIs are described below.
 
 ### POST https://v1-dot-customers-dot-ikea-services-dev.appspot.com/customers
 Request Header: 
