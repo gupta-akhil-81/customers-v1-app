@@ -1,40 +1,119 @@
-# Using Cloud Datastore
 
-This sample application shows how to use Google Cloud Datastore on Google App
-Engine.
 
-[App Engine standard environment][appengine-std] users: See tutorial [Using Cloud Datastore][tutorial-std] for more information on running and deploying this app.
 
-[App Engine flexible environment][appengine-flex] users: See tutorial [Using Cloud Datastore][tutorial-flex] for more information on running and deploying this app.
+## POST https://v1-dot-customers-dot-ikea-services-dev.appspot.com/customers
+Request Header: 
+Content-Type: application/json
 
-* [Setup](#setup)
-* [Running locally](#running-locally)
-* [Deploying to App Engine](#deploying-to-app-engine)
-* [Running the tests](#running-the-tests)
+Request Payload: 
+```javascript
+{
+        "addressLine3": "Nassau",
+        "phone2": "516-407-9573",
+        "addressLine2": "Garden City",
+        "lastName": "Liukko",
+        "firstName": "Gilma",
+        "phone1": "516-393-9967",
+        "addressLine1": "16452 Greenwich St",
+        "state": "HO",
+        "pinCode": 11530,
+        "email": "gilma_liukko@gmail.com",
+}
+```
+Response: 201 Created Time:205ms 
+Response Headers:
+Location →/customers/4887686053625856
 
-## Setup
 
-Before you can run or deploy the sample, you need to do the following:
+## GET https://v1-dot-customers-dot-ikea-services-dev.appspot.com/customers/4659360894550016
+Response: 200 OK Time: 136ms Size 640B
+```javascript
+{
+    "addressLine2": "Garden City",
+    "lastName": "Liukko",
+    "firstName": "Gilma",
+    "phone1": "516-393-9967",
+    "addressLine1": "16452 Greenwich St",
+    "state": "HO",
+    "pinCode": 11530,
+    "email": "gilma_liukko@gmail.com",
+    "addressLine3": "Nassau",
+    "phone2": "516-407-9573"
+}
+```
 
-1.  Refer to the [appengine/README.md][readme] file for instructions on
-    running and deploying.
-1.  Install dependencies:
 
-        npm install
+## PUT https://v1-dot-customers-dot-ikea-services-dev.appspot.com/customers/4659360894550016
+Request Headers:
+Content-Type: application/json
+Request Payload:
+```javascript
+{
+    "phone1": "516-393-9967",
+    "addressLine1": "16452 Greenwich St",
+    "state": "HO",
+    "pinCode": 11530,
+    "email": "gilma_liukko@gmail.com",
+    "addressLine3": "Nassau",
+    "phone2": "516-407-9573",
+    "addressLine2": "Garden City",
+    "lastName": "Liukko",
+    "firstName": "Gilma"
+}
+```
+Response: 200 OK Time: 140ms Size: 256B
 
-## Running locally
+## POST https://v1-dot-customers-dot-ikea-services-dev.appspot.com/customers/batch
+A maximum of 100 customers can be submitted in one batch api call.
 
-    npm start
+Request Headers:
+Content-Type: application/json
+Request Payload:
+```javascript
+[
 
-## Deploying to App Engine standard environment
-
-	gcloud app deploy app.standard.yaml
-
-## Deploying to App Engine flexible environment
-
-	gcloud app deploy app.flexible.yaml
-
-## Running the tests
+{
+   "firstName": "Sylvie",
+   "lastName": "Ryser",
+   "addressLine1": "649 Tulane Ave",
+   "addressLine2": "Tulsa",
+   "addressLine3": "Tulsa",
+   "state": "",
+   "pinCode": 74105,
+   "phone1": "918-644-9555",
+   "phone2": "918-565-1706",
+   "email": "sylvie@aol.com"
+ },
+ {
+   "firstName": "Sharee",
+   "lastName": "Maile",
+   "addressLine1": "2094 Montour Blvd",
+   "addressLine2": "Muskegon",
+   "addressLine3": "Muskegon",
+   "state": "",
+   "pinCode": 49442,
+   "phone1": "231-467-9978",
+   "phone2": "231-265-6940",
+   "email": "sharee_maile@aol.com"
+ }
+ ]
+```
+Response: 200 OK Time:212 ms Size:513 B
+Response Payload: 
+```javascript
+{
+    "recordsReceived": 2,
+    "recordsInserted": 2,
+    "customerIds": [
+        {
+            "id": "6022352391372800"
+        },
+        {
+            "id": "4891385563971584"
+        }
+    ]
+}
+```
 
 ## GET https://v1-dot-customers-dot-ikea-services-dev.appspot.com/customers?pageSize=2
 Response: 200 OK Time: 165ms Size: 2.93KB
@@ -172,29 +251,3 @@ Response: 200 OK Time: 165ms Size: 2.93KB
     }
 ]
 ```
-
-## POST https://v1-dot-customers-dot-ikea-services-dev.appspot.com/customers
-Request Header: 
-Content-Type: application/json
-
-Request Payload: 
-```javascript
-{
-        "addressLine3": "Nassau",
-        "phone2": "516-407-9573",
-        "addressLine2": "Garden City",
-        "lastName": "Liukko",
-        "firstName": "Gilma",
-        "phone1": "516-393-9967",
-        "addressLine1": "16452 Greenwich St",
-        "state": "HO",
-        "pinCode": 11530,
-        "email": "gilma_liukko@gmail.com",
-}
-```
-Response: 201 Created Time:205ms 
-Response Headers:
-Location →/customers/4887686053625856
-
-
-
