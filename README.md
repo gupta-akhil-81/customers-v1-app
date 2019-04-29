@@ -115,7 +115,9 @@ Response Payload:
 }
 ```
 
-## GET https://v1-dot-customers-dot-ikea-services-dev.appspot.com/customers?pageSize=2
+## GET https://v1-dot-customers-dot-ikea-services-dev.appspot.com/customers?pageSize=10
+Default pageSize is 20 customers.
+
 Response: 200 OK Time: 165ms Size: 2.93KB
 ```javascript
 [
