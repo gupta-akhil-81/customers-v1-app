@@ -1,0 +1,17 @@
+{
+  "name": "customers",
+  "description": "Customers Service to manage customers of ikea.",
+  "private": true,
+  "author": "Akhil Gupta",
+  "engines": {
+    "node": ">=8"
+  },
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "@google-cloud/datastore": "^3.0.0",
+    "express": "^4.16.4",
+    "uuid": "^3.3.2"
+  }
+}
