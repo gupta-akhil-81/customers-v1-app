@@ -1,7 +1,5 @@
 runtime: nodejs10
 env: standard
-env_variables:
-    MY_VAR: 'My Value'
 instance_class: F1
 service: customers
 handlers:
