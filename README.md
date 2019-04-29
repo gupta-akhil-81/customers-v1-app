@@ -1,7 +1,18 @@
+# Customers v1 microservice for ikea
+This service given an interface to manage customers data in Google Cloud Datastore.
+Service is hosted at URL = https://v1-dot-customers-dot-ikea-services-dev.appspot.com
+It is developed in NodeJS10 and is deployed on Google App Engien Standard.
 
+The service offers following functionalities thru the APIs-
+1. Create a new customer entity
+2. Retrieve an existing customer entity using customer id
+3. Update an existing customer entity using customer id
+4. Retrieve multiple customer entities from datastore
+5. Upload 100 new customer entities in one batch
 
+Interfacce details of all these APIs are described below.
 
-## POST https://v1-dot-customers-dot-ikea-services-dev.appspot.com/customers
+### POST https://v1-dot-customers-dot-ikea-services-dev.appspot.com/customers
 Request Header: 
 Content-Type: application/json
 
@@ -25,7 +36,7 @@ Response Headers:
 Location →/customers/4887686053625856
 
 
-## GET https://v1-dot-customers-dot-ikea-services-dev.appspot.com/customers/4659360894550016
+### GET https://v1-dot-customers-dot-ikea-services-dev.appspot.com/customers/4659360894550016
 Response: 200 OK Time: 136ms Size 640B
 ```javascript
 {
@@ -43,7 +54,7 @@ Response: 200 OK Time: 136ms Size 640B
 ```
 
 
-## PUT https://v1-dot-customers-dot-ikea-services-dev.appspot.com/customers/4659360894550016
+### PUT https://v1-dot-customers-dot-ikea-services-dev.appspot.com/customers/4659360894550016
 Request Headers:
 Content-Type: application/json
 Request Payload:
@@ -63,7 +74,7 @@ Request Payload:
 ```
 Response: 200 OK Time: 140ms Size: 256B
 
-## POST https://v1-dot-customers-dot-ikea-services-dev.appspot.com/customers/batch
+### POST https://v1-dot-customers-dot-ikea-services-dev.appspot.com/customers/batch
 A maximum of 100 customers can be submitted in one batch api call.
 
 Request Headers:
@@ -115,7 +126,7 @@ Response Payload:
 }
 ```
 
-## GET https://v1-dot-customers-dot-ikea-services-dev.appspot.com/customers?pageSize=10
+### GET https://v1-dot-customers-dot-ikea-services-dev.appspot.com/customers?pageSize=10
 Default pageSize is 20 customers.
 
 Response: 200 OK Time: 165ms Size: 2.93KB
