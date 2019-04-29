@@ -1,0 +1,174 @@
+{
+	"info": {
+		"_postman_id": "4d484f60-4016-450d-86e4-a343b03abd78",
+		"name": "PoC-customers",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "POST customers",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"addressLine3\": \"Nassau\",\n        \"phone2\": \"416-407-9573\",\n        \"addressLine2\": \"Garden City\",\n        \"lastName\": \"Peter\",\n        \"firstName\": \"Garden\",\n        \"phone1\": \"416-393-9967\",\n        \"addressLine1\": \"16452 Greenwich St\",\n        \"state\": \"HO\",\n        \"pinCode\": 11530,\n        \"email\": \"peter?garden@gmail.com\"\n\n    }"
+				},
+				"url": {
+					"raw": "https://v1-dot-customers-dot-ikea-services-dev.appspot.com/customers",
+					"protocol": "https",
+					"host": [
+						"v1-dot-customers-dot-ikea-services-dev",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"customers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET customers",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://v1-dot-customers-dot-ikea-services-dev.appspot.com/customers?pageSize=10",
+					"protocol": "https",
+					"host": [
+						"v1-dot-customers-dot-ikea-services-dev",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"customers"
+					],
+					"query": [
+						{
+							"key": "pageSize",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET customers/id",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://v1-dot-customers-dot-ikea-services-dev.appspot.com/customers/4659360894550016",
+					"protocol": "https",
+					"host": [
+						"v1-dot-customers-dot-ikea-services-dev",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"customers",
+						"4659360894550016"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT customers-id",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"phone1\": \"516-393-9967\",\n    \"addressLine1\": \"16452 Greenwich St\",\n    \"state\": \"HO\",\n    \"pinCode\": 11530,\n    \"email\": \"gilma_liukko@gmail.com\",\n    \"addressLine3\": \"Nassau\",\n    \"phone2\": \"516-407-9573\",\n    \"addressLine2\": \"Garden City\",\n    \"lastName\": \"Liukko\",\n    \"firstName\": \"Gilma\"\n}"
+				},
+				"url": {
+					"raw": "https://v1-dot-customers-dot-ikea-services-dev.appspot.com/customers/4659360894550016",
+					"protocol": "https",
+					"host": [
+						"v1-dot-customers-dot-ikea-services-dev",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"customers",
+						"4659360894550016"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST customers batch",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\n{\n   \"firstName\": \"Sylvie\",\n   \"lastName\": \"Ryser\",\n   \"addressLine1\": \"649 Tulane Ave\",\n   \"addressLine2\": \"Tulsa\",\n   \"addressLine3\": \"Tulsa\",\n   \"state\": \"\",\n   \"pinCode\": 74105,\n   \"phone1\": \"918-644-9555\",\n   \"phone2\": \"918-565-1706\",\n   \"email\": \"sylvie@aol.com\"\n },\n {\n   \"firstName\": \"Sharee\",\n   \"lastName\": \"Maile\",\n   \"addressLine1\": \"2094 Montour Blvd\",\n   \"addressLine2\": \"Muskegon\",\n   \"addressLine3\": \"Muskegon\",\n   \"state\": \"\",\n   \"pinCode\": 49442,\n   \"phone1\": \"231-467-9978\",\n   \"phone2\": \"231-265-6940\",\n   \"email\": \"sharee_maile@aol.com\"\n }\n]"
+				},
+				"url": {
+					"raw": "https://v1-dot-customers-dot-ikea-services-dev.appspot.com/customers/batch",
+					"protocol": "https",
+					"host": [
+						"v1-dot-customers-dot-ikea-services-dev",
+						"appspot",
+						"com"
+					],
+					"path": [
+						"customers",
+						"batch"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
