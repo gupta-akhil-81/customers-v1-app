@@ -1,6 +1,6 @@
 {
   "name": "customers",
-  "description": "Customers Service to manage customers of ikea.",
+  "description": "Customers Service to manage customers.",
   "private": true,
   "author": "Akhil Gupta",
   "scripts": {
